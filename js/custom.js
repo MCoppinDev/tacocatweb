@@ -37,31 +37,6 @@ input.addEventListener("keypress", function (event) {
   }
 });
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-    // get input
-//     let word = document.getElementById("input").value;
-//     let newWord = word.toLowerCase().replace(/ /g,"");
-//     let revWord = "";
-    
-//     for (let i = newWord.length - 1; i >= 0; i--) {
-//         let character = newWord.substr(i, 1);
-//         revWord += character;
-//     }
-//     if (newWord == revWord) {
-//         document.getElementById("output").innerText = `${newWord} is a Palindrome!` 
-//     }
-//     else {
-//         document.getElementById("output").innerText = `${newWord} is a NOT a Palindrome!` 
-//     }
-// });
 
 // Clear the input and output
 document.getElementById("clear").addEventListener("click", function () {
