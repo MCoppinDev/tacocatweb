@@ -1,4 +1,3 @@
-
 //get input from html
 let input = document.getElementById("input");
 
@@ -22,13 +21,13 @@ document.getElementById("check").addEventListener("click", function () {
   if (newWord == "") {
     result = "Please enter a word.";
   } else if (newWord == revWord) {
-    result = `${newWord} is a Palindrome!`;
+    result = `${newWord} is a Palindrome!😸`;
   } else {
-    result = `${newWord} is a NOT a Palindrome!`;
-    }
-    output.innerText = result;
+    result = `${newWord} is a NOT a Palindrome!😿`;
+  }
+  output.innerText = result;
 
-    return output;
+  return output;
 });
 
 input.addEventListener("keypress", function (event) {
@@ -36,11 +35,9 @@ input.addEventListener("keypress", function (event) {
     document.getElementById("check").click();
   }
 });
-   
 
 // Clear the input and output
 document.getElementById("clear").addEventListener("click", function () {
-    
-    document.getElementById("input").value="";  
-    document.getElementById("output").innerText = "";
+  document.getElementById("input").value = "";
+  document.getElementById("output").innerText = "";
 });
