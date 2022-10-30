@@ -1,0 +1,15 @@
+span.boldy {
+    font-weight: bold;
+  }
+
+#btn2 {
+  width: 100%;
+}
+
+body {
+   background-image: url('../img/omid-armin.jpg');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+}
+

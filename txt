@@ -1,0 +1,59 @@
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="add-comment">
+                                        <header>
+                                            <h3 class="h6">Leave a reply</h3>
+                                        </header>
+                                        <form asp-controller="PostComments" asp-action="Create" class="commenting-form">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" name="CategoryPostId" value="@Model.Id" />
+                                            <input type="hidden" asp-for="Slug" />
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <textarea name="CommentBody" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <button type="submit" value="Post" class="btn btn-secondary">Submit Comment</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h2>Login or Register to post a Comment</h2>
+                                }
+
+
+
+
+                                        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("CategoryPostId,CommentBody")] PostComment postComment, string slug)
+        {
+            if (ModelState.IsValid)
+            {
+                postComment.Created = DateTime.Now;
+                postComment.BlogUserId = _userManager.GetUserId(User);
+                _context.Add(postComment);
+                await _context.SaveChangesAsync();
+                //need a slug for navigation 
+                return RedirectToAction("Details", "CategoryPosts", new{slug });
+            }
+            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", postComment.BlogUserId);
+            ViewData["CategoryPostId"] = new SelectList(_context.CategoryPost, "Id", "Id", postComment.CategoryPostId);
+            return View(postComment);
+        }
+
+        
+            var categoryPost = await _context.CategoryPost
+                .Include(c => c.BlogCategory)
+                .Include(c => c.PostComments)
+                .ThenInclude(p => p.BlogUser)
+                .FirstOrDefaultAsync(mbox => mbox.Slug == slug);
+            if (categoryPost == null)
+            {
+                return NotFound();
+            }
+            return View(categoryPost);
