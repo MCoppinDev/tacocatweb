@@ -25,7 +25,7 @@ document.getElementById("check").addEventListener("click", function () {
   } else {
     result = `${newWord} is a NOT a Palindrome!😿`;
   }
-  output.innerText = result;
+  output.innerHTML = result;
 
   return output;
 });
